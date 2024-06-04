@@ -34,10 +34,16 @@ public class Postagem {
 	@UpdateTimestamp
 	private LocalDateTime data;
 	
+	//relacionamento
 	@ManyToOne // criar o relacionamento de que muitas postagens podem pertencer a um tema
 	@JsonIgnoreProperties ("postagem") // ignorando as postagens na lista de tema, pra não dar um loop infinito
 	private Tema tema;
+	
+	@ManyToOne
+	@JsonIgnoreProperties("postagem")
+	private Usuario usuario;
 
+	//geramos os getteres and setteres dos atributos para conseguir recuperar e inserir dados nos atributos
 	public Long getId() {
 		return id;
 	}
@@ -76,7 +82,15 @@ public class Postagem {
 
 	public void setTema(Tema tema) {
 		this.tema = tema;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	} 
 	
-	
+
 }
